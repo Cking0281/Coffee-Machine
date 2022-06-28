@@ -32,22 +32,24 @@ def resources_sufficient(water, milk, coffee, choice):
 
 
 # TODO 5: Process coins
-def process_coins(quarters, dimes, nickels, pennies, choice):
+def process_coins(quarters, dimes, nickels, pennies):
     quarters *= QUARTER
     dimes *= DIME
     nickels *= NICKEL
     pennies *= PENNY
-    total = sum([quarters, dimes, nickels, pennies])
-    if total > MENU[choice]["cost"]:
-        leftover_change = total - MENU[choice]["cost"]
-        print(f"Here is ${leftover_change} in change.")
-        return MENU[choice]["cost"]
-    elif total < MENU[choice["cost"]]:
-        print("Sorry that's not enough money. Money refunded.")
-        return 0
+    return sum([quarters, dimes, nickels, pennies])
 
 
 # TODO 6: Check transaction successful
+def check_transaction(money, choice):
+    if money > MENU[choice]["cost"]:
+        leftover_change = money - MENU[choice]["cost"]
+        print(f"Here is ${leftover_change:.2f} in change.")
+        return MENU[choice]["cost"]
+    elif money < MENU[choice["cost"]]:
+        print("Sorry that's not enough money. Money refunded.")
+        return 0
+
 
 # TODO 7: Make Coffee
 def make_drink(water, milk, coffee, choice):
@@ -80,7 +82,7 @@ def main():
             num_dimes = int(input("how many dimes? "))
             num_nickels = int(input("how many nickels? "))
             num_pennies = int(input("how many pennies? "))
-            money += process_coins(num_quarters, num_dimes, num_nickels, num_pennies, user_choice)
+            money += check_transaction(process_coins(num_quarters, num_dimes, num_nickels, num_pennies), user_choice)
             water, milk, coffee = make_drink(water, milk, coffee, user_choice)
 
 
