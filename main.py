@@ -6,7 +6,7 @@ NICKEL = 0.05
 PENNY = 0.01
 
 
-# TODO 3: Print report
+# Displays report
 def display_report(water, milk, coffee, money):
     """Displays a report to user with all available ingredients."""
     print(f"Water: {water}ml")
@@ -15,7 +15,7 @@ def display_report(water, milk, coffee, money):
     print(f"Money: ${money:.2f}")
 
 
-# TODO 4: Check resources sufficient?
+# Check resources sufficient?
 def resources_sufficient(water, milk, coffee, choice):
     """Checks if enough resources are sufficient for drink and returns True if they are."""
     if water < MENU[choice]["ingredients"]["water"]:
@@ -31,7 +31,7 @@ def resources_sufficient(water, milk, coffee, choice):
         return True
 
 
-# TODO 5: Process coins
+# Process coins
 def process_coins(quarters, dimes, nickels, pennies):
     quarters *= QUARTER
     dimes *= DIME
@@ -40,7 +40,7 @@ def process_coins(quarters, dimes, nickels, pennies):
     return sum([quarters, dimes, nickels, pennies])
 
 
-# TODO 6: Check transaction successful
+# Check transaction successful
 def check_transaction(money, choice):
     if money > MENU[choice]["cost"]:
         leftover_change = money - MENU[choice]["cost"]
@@ -51,7 +51,7 @@ def check_transaction(money, choice):
         return 0
 
 
-# TODO 7: Make Coffee
+# Make Coffee
 def make_drink(water, milk, coffee, choice):
     """Makes coffee and returns ingredients while displaying a message to user."""
     water -= MENU[choice]["ingredients"]["water"]
@@ -70,9 +70,9 @@ def main():
     coffee = resources["coffee"]
     money = float(0)
     while keep_choosing:
-        # TODO 1: Prompt user by asking "What would you like? (espresso/latte/cappuccino): "
+        # Prompt user by asking "What would you like? (espresso/latte/cappuccino): "
         user_choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
-        # TODO 2: Turn off the Coffee Machine by entering "off" to the prompt
+        # Turn off the Coffee Machine by entering "off" to the prompt
         if user_choice == "off":
             keep_choosing = False
         elif user_choice == "report":
